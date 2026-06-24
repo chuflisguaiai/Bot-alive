@@ -1,0 +1,15 @@
+name: Keep Bot Alive
+ 
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+ 
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping bot
+        run: |
+          curl -s -o /dev/null -w "Status: %{http_code}" \
+            https://efa2200c-f7ee-431f-b656-ded7f98feced-00-1vw1n7e10ymvw.sisko.replit.dev/api/healthz
